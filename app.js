@@ -18,8 +18,16 @@ setTimeout(() => {
     addStylesTo(heading2, 'need', 'yellow', '2rem')
 }, 4500)
 
+//const link = heading3.children[0]
+const link = heading3.querySelector('a')
+link.addEventListener('click', (event) => {
+    event.preventDefault()
+    console.log('Click on link', event.target.getAttribute('href'))
+    const url = event.target.getAttribute('href')
+    window.location = url
+})
 setTimeout(() => {
-    addStylesTo(heading3, 'all you', 'blue')
+    addStylesTo(link, 'all you', 'blue')
 }, 3000)
 
 function addStylesTo(node, text, color = 'red', fontSize) {
@@ -28,12 +36,31 @@ function addStylesTo(node, text, color = 'red', fontSize) {
     node.style.textAlign = 'center'
     node.style.background = 'grey'
     node.style.padding = '2rem'
+    node.style.display = 'block'
+    node.style.width = '100%'
     // falsy: undefined, null, 0, false
     if(fontSize) {
         node.style.fontSize = fontSize
     }
 }
 
-heading.onclick = () =>{ //mdn mouse events справочник по событиям
-    console.log('click')
+heading.onclick = () =>{ //mdn mouse events справочник по событиям - события мыши
+                                //https://developer.mozilla.org/ru/docs/Web/Events
+    if (heading.style.color === 'red') {
+        heading.style.color = 'black'
+        heading.style.backgroundColor = 'white'
+    } else {
+        heading.style.color = 'red'
+        heading.style.backgroundColor = 'gray'
+    }
 }
+
+heading2.addEventListener('dblclick', () => {
+    if (heading2.style.color === 'yellow') {
+        heading2.style.color = 'black'
+        heading2.style.backgroundColor = 'white'
+    } else {
+        heading2.style.color = 'yellow'
+        heading2.style.backgroundColor = 'gray'
+    }
+})
